@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         self.mainWidget = QWidget()
         self.dataDir = dataDir
 
-        if not os.path.exists(self.data):
+        if not os.path.exists(self.dataDir):
             raise FileNotFoundError()
         
         self.setCentralWidget(self.mainWidget)
