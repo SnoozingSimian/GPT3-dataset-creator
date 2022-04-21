@@ -1,5 +1,6 @@
 # Built ins
 import os
+from time import time_ns
 
 # Local imports
 from src.data_parser import parse_data
@@ -84,13 +85,17 @@ class MainWindow(QMainWindow):
 
         self.promptEdit.setText("")
         self.answerEdit.setText("")
+        self.added = True
 
 
     def saveDataset(self):
         filename = self.fileEdit.text()
 
-        os.makedirs("data", 711, exist_ok = True)
-        
+        os.makedirs(self.dataDir, 711, exist_ok = True)
+
+        if os.path.exists(os.path.join(self.dataDir, filename)):
+            print("file exists, added timestamp identifier...")
+            filename = time_ns() + filename 
         msg, status = self.dataStack.writeToFile(os.path.join(self.dataDir, filename))
         message = f"{msg}\nstatus = {status}"
         self.statusBar().showMessage(message)

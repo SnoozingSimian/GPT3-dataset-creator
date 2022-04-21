@@ -14,7 +14,7 @@
 def parse_data(data: dict) -> dict:
     parsed_data = {}
     parsed_data['prompt'] = f"""{data['actions'].strip()}\n{data['emotes'].strip()}\n{data['prompt'].strip()}"""
-    parsed_data['answer'] = f"""{data['answer'].strip()}"""
+    parsed_data['completion'] = f"""{data['answer'].strip()}"""
 
     return parsed_data
     

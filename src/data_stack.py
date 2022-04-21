@@ -16,7 +16,7 @@ class DataStack():
         try:
             l = len(self.stack)
             with open(filename, "w") as f:
-                json.dump(self.stack, f)
+                json.dump(self.stack, f, indent=4)
             self.stack = []
             status = 0
         except Exception as e:
