@@ -95,7 +95,10 @@ class MainWindow(QMainWindow):
 
         if os.path.exists(os.path.join(self.dataDir, filename)):
             print("file exists, added timestamp identifier...")
-            filename = time_ns() + filename 
+            filename = time_ns() + filename
+            
+            if not filename.endswith(".json"):
+                filename = filename + ".json"  # Add json extension
         msg, status = self.dataStack.writeToFile(os.path.join(self.dataDir, filename))
         message = f"{msg}\nstatus = {status}"
         self.statusBar().showMessage(message)
