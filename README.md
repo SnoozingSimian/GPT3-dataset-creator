@@ -1,5 +1,5 @@
 # GPT3-dataset-creator
-Small GUI application for easy creation of OpenAI GPT3 datasets
+Small GUI application for easy creation of OpenAI GPT3 datasets.
 
 Can be used to create `.json` datasets which can be directly used by the finetuning cli tool from OpenAI to create `prompts` and `completions`.
 
