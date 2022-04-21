@@ -26,4 +26,4 @@ Here is how it looks like, pretty barebones I know, but it gets the job done!
 
 Let us assume you saved the file as `datafile.json`. You can then use the OpenAI CLI tool to format it to the accepted `JSONL` format.
     
-    `openai tools fine_tunes.prepare_data -f <data_dir>/datafile.json`
+    openai tools fine_tunes.prepare_data -f <data_dir>/datafile.json
