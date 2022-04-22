@@ -11,15 +11,11 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 
 class MainWindow(QMainWindow):
-    def __init__(self, dataDir, *args, **kwargs) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         
         self.dataStack = DataStack()
         self.mainWidget = QWidget()
-        self.dataDir = dataDir
-
-        if not os.path.exists(self.dataDir):
-            raise FileNotFoundError()
         
         self.setCentralWidget(self.mainWidget)
         self.initUI()
@@ -30,10 +26,12 @@ class MainWindow(QMainWindow):
         prompt = QLabel('Prompt')
         answer = QLabel('Answer')
         file = QLabel('Filename')
+        dataDir = QLabel('Folder')
 
         self.actionsEdit = QLineEdit()
         self.emotesEdit = QLineEdit()
         self.fileEdit = QLineEdit()
+        self.dirEdit = QLineEdit()
         self.promptEdit = QTextEdit()
         self.answerEdit = QTextEdit()
 
@@ -49,8 +47,10 @@ class MainWindow(QMainWindow):
         grid.addWidget(self.promptEdit, 6, 0, 3, 1)
         grid.addWidget(answer, 5, 2)
         grid.addWidget(self.answerEdit, 6, 2, 3, 3)
-        grid.addWidget(file, 11, 0)
-        grid.addWidget(self.fileEdit, 11, 2)            
+        grid.addWidget(dataDir, 11, 0)
+        grid.addWidget(self.dirEdit, 12, 0 )
+        grid.addWidget(file, 11, 2)
+        grid.addWidget(self.fileEdit, 12, 2)            
 
         addBtn = QPushButton("Add Another")
         addBtn.clicked.connect(self.addData)
@@ -90,16 +90,17 @@ class MainWindow(QMainWindow):
 
     def saveDataset(self):
         filename = self.fileEdit.text()
+        dataDir = self.dirEdit.text()
+        os.makedirs(dataDir, 711, exist_ok = True)
 
-        os.makedirs(self.dataDir, 711, exist_ok = True)
-
-        if os.path.exists(os.path.join(self.dataDir, filename)):
+        if os.path.exists(os.path.join(dataDir, filename)):
             print("file exists, added timestamp identifier...")
-            filename = time_ns() + filename
+            filename = str(time_ns()) + filename
             
-            if not filename.endswith(".json"):
-                filename = filename + ".json"  # Add json extension
-        msg, status = self.dataStack.writeToFile(os.path.join(self.dataDir, filename))
+        if not filename.endswith(".json"):
+            filename = filename + ".json"
+            
+        msg, status = self.dataStack.writeToFile(os.path.join(dataDir, filename))
         message = f"{msg}\nstatus = {status}"
         self.statusBar().showMessage(message)
         
