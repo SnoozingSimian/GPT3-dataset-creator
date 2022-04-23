@@ -1,2 +1,11 @@
+/__pycache__
 /*/__pycache__
+
 /data
+/WinBuild
+/MacBuild
+
+/macOS
+/Windows
+
+*.spec
