@@ -1,8 +1,16 @@
+/__pycache__
 /*/__pycache__
+
 /data
 
+/WinBuild
+/MacBuild
 /build
-/macOS
 
+/macOS
+/Windows
+
+*.spec
 
 .DS_Store
+

@@ -18,6 +18,17 @@ Usage:
     ```
 The rest of the app is pretty self explanatory.
 
+
+Alternatively, for MacOS users.
+
+1. Clone the Github Repo:
+
+    ```
+    git clone https://github.com/SnoozingSimian/GPT3-dataset-creator.git
+    ```
+2. Launch dist/dataset-creator.app
+
+
 Note: Always use the `Add Another` button and ensure that both the `Prompt` and `Answer` fields are clean before clicking `Save`.
 
 Here is how it looks like, pretty barebones I know, but it gets the job done!
