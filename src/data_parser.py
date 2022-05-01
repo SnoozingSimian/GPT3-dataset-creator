@@ -13,7 +13,13 @@
 
 def parse_data(data: dict) -> dict:
     parsed_data = {}
-    parsed_data['prompt'] = f"""{data['actions'].strip()}\n{data['emotes'].strip()}\n{data['prompt'].strip()}"""
+    
+    parsed_data['prompt'] = f"""{data['prompt'].strip()}"""
+    if data['emotes'] != "":
+       parsed_data['prompt'] = f"""{data['emotes'].strip()}\n""" + parsed_data['prompt'] 
+    if data['actions'] != "":
+        parsed_data['prompt'] = f"""{data['actions'].strip()}\n""" + parsed_data['prompt']
+    
     parsed_data['completion'] = f"""{data['answer'].strip()}"""
 
     return parsed_data
